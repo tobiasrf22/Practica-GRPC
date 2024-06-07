@@ -8,14 +8,9 @@ public interface BookResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string book_id = 1;</code>
+   * <code>int64 book_id = 1;</code>
    */
-  java.lang.String getBookId();
-  /**
-   * <code>string book_id = 1;</code>
-   */
-  com.google.protobuf.ByteString
-      getBookIdBytes();
+  long getBookId();
 
   /**
    * <code>string name = 2;</code>
@@ -28,11 +23,12 @@ public interface BookResponseOrBuilder extends
       getNameBytes();
 
   /**
-   * <code>.constants.Type type = 3;</code>
+   * <code>string genre = 3;</code>
    */
-  int getTypeValue();
+  java.lang.String getGenre();
   /**
-   * <code>.constants.Type type = 3;</code>
+   * <code>string genre = 3;</code>
    */
-  com.javainuse.constants.Type getType();
+  com.google.protobuf.ByteString
+      getGenreBytes();
 }

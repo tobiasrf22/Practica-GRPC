@@ -34,12 +34,11 @@ public final class BookServiceOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n\022book-service.proto\032\024constants/util.pro" +
-      "to\"\036\n\013BookRequest\022\017\n\007book_id\030\001 \001(\t\"L\n\014Bo" +
-      "okResponse\022\017\n\007book_id\030\001 \001(\t\022\014\n\004name\030\002 \001(" +
-      "\t\022\035\n\004type\030\003 \001(\0162\017.constants.Type27\n\013Book" +
-      "Service\022(\n\007getBook\022\014.BookRequest\032\r.BookR" +
-      "esponse\"\000B\032\n\026com.javainuse.employeeP\001b\006p" +
-      "roto3"
+      "to\"\036\n\013BookRequest\022\017\n\007book_id\030\001 \001(\003\"<\n\014Bo" +
+      "okResponse\022\017\n\007book_id\030\001 \001(\003\022\014\n\004name\030\002 \001(" +
+      "\t\022\r\n\005genre\030\003 \001(\t27\n\013BookService\022(\n\007getBo" +
+      "ok\022\014.BookRequest\032\r.BookResponse\"\000B\032\n\026com" +
+      ".javainuse.employeeP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -65,7 +64,7 @@ public final class BookServiceOuterClass {
     internal_static_BookResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_BookResponse_descriptor,
-        new java.lang.String[] { "BookId", "Name", "Type", });
+        new java.lang.String[] { "BookId", "Name", "Genre", });
     com.javainuse.constants.Util.getDescriptor();
   }
 

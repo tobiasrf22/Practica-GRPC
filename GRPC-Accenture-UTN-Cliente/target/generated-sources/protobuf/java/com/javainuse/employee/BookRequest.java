@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private BookRequest() {
-    bookId_ = "";
+    bookId_ = 0L;
   }
 
   @java.lang.Override
@@ -43,10 +43,9 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
+          case 8: {
 
-            bookId_ = s;
+            bookId_ = input.readInt64();
             break;
           }
           default: {
@@ -82,37 +81,12 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int BOOK_ID_FIELD_NUMBER = 1;
-  private volatile java.lang.Object bookId_;
+  private long bookId_;
   /**
-   * <code>string book_id = 1;</code>
+   * <code>int64 book_id = 1;</code>
    */
-  public java.lang.String getBookId() {
-    java.lang.Object ref = bookId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      bookId_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string book_id = 1;</code>
-   */
-  public com.google.protobuf.ByteString
-      getBookIdBytes() {
-    java.lang.Object ref = bookId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      bookId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public long getBookId() {
+    return bookId_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -129,8 +103,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getBookIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, bookId_);
+    if (bookId_ != 0L) {
+      output.writeInt64(1, bookId_);
     }
     unknownFields.writeTo(output);
   }
@@ -141,8 +115,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getBookIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, bookId_);
+    if (bookId_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(1, bookId_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -160,8 +135,8 @@ private static final long serialVersionUID = 0L;
     com.javainuse.employee.BookRequest other = (com.javainuse.employee.BookRequest) obj;
 
     boolean result = true;
-    result = result && getBookId()
-        .equals(other.getBookId());
+    result = result && (getBookId()
+        == other.getBookId());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -174,7 +149,8 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + BOOK_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getBookId().hashCode();
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getBookId());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -308,7 +284,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      bookId_ = "";
+      bookId_ = 0L;
 
       return this;
     }
@@ -385,9 +361,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(com.javainuse.employee.BookRequest other) {
       if (other == com.javainuse.employee.BookRequest.getDefaultInstance()) return this;
-      if (!other.getBookId().isEmpty()) {
-        bookId_ = other.bookId_;
-        onChanged();
+      if (other.getBookId() != 0L) {
+        setBookId(other.getBookId());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -418,71 +393,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object bookId_ = "";
+    private long bookId_ ;
     /**
-     * <code>string book_id = 1;</code>
+     * <code>int64 book_id = 1;</code>
      */
-    public java.lang.String getBookId() {
-      java.lang.Object ref = bookId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        bookId_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+    public long getBookId() {
+      return bookId_;
     }
     /**
-     * <code>string book_id = 1;</code>
+     * <code>int64 book_id = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getBookIdBytes() {
-      java.lang.Object ref = bookId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        bookId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string book_id = 1;</code>
-     */
-    public Builder setBookId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+    public Builder setBookId(long value) {
+      
       bookId_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string book_id = 1;</code>
+     * <code>int64 book_id = 1;</code>
      */
     public Builder clearBookId() {
       
-      bookId_ = getDefaultInstance().getBookId();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string book_id = 1;</code>
-     */
-    public Builder setBookIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      bookId_ = value;
+      bookId_ = 0L;
       onChanged();
       return this;
     }

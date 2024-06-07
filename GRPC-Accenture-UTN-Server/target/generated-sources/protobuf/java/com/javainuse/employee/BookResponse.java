@@ -16,9 +16,9 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private BookResponse() {
-    bookId_ = "";
+    bookId_ = 0L;
     name_ = "";
-    type_ = 0;
+    genre_ = "";
   }
 
   @java.lang.Override
@@ -45,10 +45,9 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
+          case 8: {
 
-            bookId_ = s;
+            bookId_ = input.readInt64();
             break;
           }
           case 18: {
@@ -57,10 +56,10 @@ private static final long serialVersionUID = 0L;
             name_ = s;
             break;
           }
-          case 24: {
-            int rawValue = input.readEnum();
+          case 26: {
+            java.lang.String s = input.readStringRequireUtf8();
 
-            type_ = rawValue;
+            genre_ = s;
             break;
           }
           default: {
@@ -96,37 +95,12 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int BOOK_ID_FIELD_NUMBER = 1;
-  private volatile java.lang.Object bookId_;
+  private long bookId_;
   /**
-   * <code>string book_id = 1;</code>
+   * <code>int64 book_id = 1;</code>
    */
-  public java.lang.String getBookId() {
-    java.lang.Object ref = bookId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      bookId_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string book_id = 1;</code>
-   */
-  public com.google.protobuf.ByteString
-      getBookIdBytes() {
-    java.lang.Object ref = bookId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      bookId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public long getBookId() {
+    return bookId_;
   }
 
   public static final int NAME_FIELD_NUMBER = 2;
@@ -163,21 +137,38 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int TYPE_FIELD_NUMBER = 3;
-  private int type_;
+  public static final int GENRE_FIELD_NUMBER = 3;
+  private volatile java.lang.Object genre_;
   /**
-   * <code>.constants.Type type = 3;</code>
+   * <code>string genre = 3;</code>
    */
-  public int getTypeValue() {
-    return type_;
+  public java.lang.String getGenre() {
+    java.lang.Object ref = genre_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      genre_ = s;
+      return s;
+    }
   }
   /**
-   * <code>.constants.Type type = 3;</code>
+   * <code>string genre = 3;</code>
    */
-  public com.javainuse.constants.Type getType() {
-    @SuppressWarnings("deprecation")
-    com.javainuse.constants.Type result = com.javainuse.constants.Type.valueOf(type_);
-    return result == null ? com.javainuse.constants.Type.UNRECOGNIZED : result;
+  public com.google.protobuf.ByteString
+      getGenreBytes() {
+    java.lang.Object ref = genre_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      genre_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -194,14 +185,14 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getBookIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, bookId_);
+    if (bookId_ != 0L) {
+      output.writeInt64(1, bookId_);
     }
     if (!getNameBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
     }
-    if (type_ != com.javainuse.constants.Type.FANTASY.getNumber()) {
-      output.writeEnum(3, type_);
+    if (!getGenreBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, genre_);
     }
     unknownFields.writeTo(output);
   }
@@ -212,15 +203,15 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getBookIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, bookId_);
+    if (bookId_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(1, bookId_);
     }
     if (!getNameBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
     }
-    if (type_ != com.javainuse.constants.Type.FANTASY.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(3, type_);
+    if (!getGenreBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, genre_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -238,11 +229,12 @@ private static final long serialVersionUID = 0L;
     com.javainuse.employee.BookResponse other = (com.javainuse.employee.BookResponse) obj;
 
     boolean result = true;
-    result = result && getBookId()
-        .equals(other.getBookId());
+    result = result && (getBookId()
+        == other.getBookId());
     result = result && getName()
         .equals(other.getName());
-    result = result && type_ == other.type_;
+    result = result && getGenre()
+        .equals(other.getGenre());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -255,11 +247,12 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + BOOK_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getBookId().hashCode();
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getBookId());
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
-    hash = (37 * hash) + TYPE_FIELD_NUMBER;
-    hash = (53 * hash) + type_;
+    hash = (37 * hash) + GENRE_FIELD_NUMBER;
+    hash = (53 * hash) + getGenre().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -393,11 +386,11 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      bookId_ = "";
+      bookId_ = 0L;
 
       name_ = "";
 
-      type_ = 0;
+      genre_ = "";
 
       return this;
     }
@@ -427,7 +420,7 @@ private static final long serialVersionUID = 0L;
       com.javainuse.employee.BookResponse result = new com.javainuse.employee.BookResponse(this);
       result.bookId_ = bookId_;
       result.name_ = name_;
-      result.type_ = type_;
+      result.genre_ = genre_;
       onBuilt();
       return result;
     }
@@ -476,16 +469,16 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(com.javainuse.employee.BookResponse other) {
       if (other == com.javainuse.employee.BookResponse.getDefaultInstance()) return this;
-      if (!other.getBookId().isEmpty()) {
-        bookId_ = other.bookId_;
-        onChanged();
+      if (other.getBookId() != 0L) {
+        setBookId(other.getBookId());
       }
       if (!other.getName().isEmpty()) {
         name_ = other.name_;
         onChanged();
       }
-      if (other.type_ != 0) {
-        setTypeValue(other.getTypeValue());
+      if (!other.getGenre().isEmpty()) {
+        genre_ = other.genre_;
+        onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -516,71 +509,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object bookId_ = "";
+    private long bookId_ ;
     /**
-     * <code>string book_id = 1;</code>
+     * <code>int64 book_id = 1;</code>
      */
-    public java.lang.String getBookId() {
-      java.lang.Object ref = bookId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        bookId_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+    public long getBookId() {
+      return bookId_;
     }
     /**
-     * <code>string book_id = 1;</code>
+     * <code>int64 book_id = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getBookIdBytes() {
-      java.lang.Object ref = bookId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        bookId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string book_id = 1;</code>
-     */
-    public Builder setBookId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+    public Builder setBookId(long value) {
+      
       bookId_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string book_id = 1;</code>
+     * <code>int64 book_id = 1;</code>
      */
     public Builder clearBookId() {
       
-      bookId_ = getDefaultInstance().getBookId();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string book_id = 1;</code>
-     */
-    public Builder setBookIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      bookId_ = value;
+      bookId_ = 0L;
       onChanged();
       return this;
     }
@@ -654,47 +604,71 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int type_ = 0;
+    private java.lang.Object genre_ = "";
     /**
-     * <code>.constants.Type type = 3;</code>
+     * <code>string genre = 3;</code>
      */
-    public int getTypeValue() {
-      return type_;
-    }
-    /**
-     * <code>.constants.Type type = 3;</code>
-     */
-    public Builder setTypeValue(int value) {
-      type_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>.constants.Type type = 3;</code>
-     */
-    public com.javainuse.constants.Type getType() {
-      @SuppressWarnings("deprecation")
-      com.javainuse.constants.Type result = com.javainuse.constants.Type.valueOf(type_);
-      return result == null ? com.javainuse.constants.Type.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>.constants.Type type = 3;</code>
-     */
-    public Builder setType(com.javainuse.constants.Type value) {
-      if (value == null) {
-        throw new NullPointerException();
+    public java.lang.String getGenre() {
+      java.lang.Object ref = genre_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        genre_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
       }
-      
-      type_ = value.getNumber();
+    }
+    /**
+     * <code>string genre = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getGenreBytes() {
+      java.lang.Object ref = genre_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        genre_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string genre = 3;</code>
+     */
+    public Builder setGenre(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      genre_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>.constants.Type type = 3;</code>
+     * <code>string genre = 3;</code>
      */
-    public Builder clearType() {
+    public Builder clearGenre() {
       
-      type_ = 0;
+      genre_ = getDefaultInstance().getGenre();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string genre = 3;</code>
+     */
+    public Builder setGenreBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      genre_ = value;
       onChanged();
       return this;
     }

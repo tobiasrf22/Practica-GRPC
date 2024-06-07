@@ -18,7 +18,7 @@ public class BookService {
 
 		BookServiceGrpc.BookServiceBlockingStub stub = BookServiceGrpc.newBlockingStub(channel);
 
-		BookResponse bookResponse = stub.getBook(BookRequest.newBuilder().setBookId("1").build());
+		BookResponse bookResponse = stub.getBook(BookRequest.newBuilder().setBookId(1L).build());
 
 		System.out.println(bookResponse);
 

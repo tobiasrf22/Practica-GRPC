@@ -8,12 +8,7 @@ public interface BookRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string book_id = 1;</code>
+   * <code>int64 book_id = 1;</code>
    */
-  java.lang.String getBookId();
-  /**
-   * <code>string book_id = 1;</code>
-   */
-  com.google.protobuf.ByteString
-      getBookIdBytes();
+  long getBookId();
 }
